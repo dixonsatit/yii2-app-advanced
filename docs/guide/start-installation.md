@@ -18,14 +18,20 @@ The `yii2-base` image comes in three flavours:
 
 1. Install [Docker Toolbox] (https://www.docker.com/products/docker-toolbox) or Install [Docker for Mac] (https://docs.docker.com/docker-for-mac/)
 2. Create GitHub [personal API token](https://github.com/blog/1509-personal-api-tokens)
-3. Place your GitHub personal API token to `docker-compose.yml`
-4. Run commands start containers:
+3. Prepare project:
+
+   ```bash
+   git clone https://github.com/dixonsatit/yii2-app-advanced.git
+   cd yii2-app-advanced
+   ```
+4. Place your GitHub personal API token to `docker-compose.yml`
+5. Run commands start containers:
 
   ```bash
   docker-compose up -d
   docker-compose run --rm app  composer install
   ```
-5. Modify your hosts file
+6. Modify your hosts file
 
  - windews  ` c:\Windows\System32\Drivers\etc\hosts`
  - OS X or Linux `/etc/hosts`
