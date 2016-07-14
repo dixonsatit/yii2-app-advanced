@@ -5,6 +5,53 @@ Installation
 
 The minimum requirement by this project template is that your Web server supports PHP 5.4.0.
 
+## Installing using Docker
+
+A yii2-app-advanced based on the
+[codemix/yii2-base](https://registry.hub.docker.com/u/codemix/yii2-base/) docker image.
+
+The `yii2-base` image comes in three flavours:
+
+ * **Apache with PHP module** (based on `php:7.0.8-apache` or `php:5.6.18-apache`)
+ * **PHP-FPM** (based on `php:7.0.8-fpm` or `php:5.6.18-fpm`) *default
+ * **HHVM** (based on `estebanmatias92/hhvm:3.8.1-fastcgi`)
+
+1. Install [Docker Toolbox] (https://www.docker.com/products/docker-toolbox) or Install [Docker for Mac] (https://docs.docker.com/docker-for-mac/)
+2. Create GitHub [personal API token](https://github.com/blog/1509-personal-api-tokens)
+3. Place your GitHub personal API token to `docker-compose.yml`
+4. Run commands start containers:
+
+  ```bash
+  docker-compose up -d
+  docker-compose run --rm app  composer install
+  ```
+5.  your application is accessible on
+ - frontend (http://yii2-frontend.dev)
+ - backend (http://yii2-backend.dev)
+ - phpmyadmin (http://yii2-frontend.dev:8080)
+  - username `root`
+  - password `123132123`
+
+List containers.
+```bash
+docker-compose ps
+```
+stop containers.
+```bash
+docker-compose stop
+```
+Stops containers and removes containers, networks, volumes, and images
+created by `up`.
+```bash
+docker-compose down
+```
+
+ - php7 fpm
+ - mysql
+ - nginx
+ - memcached
+ - phpmyadmin
+
 ## Installing using Vagrant
 
 This way is the easiest but long (~20 min).
@@ -17,13 +64,13 @@ This way is the easiest but long (~20 min).
 2. Install [Vagrant](https://www.vagrantup.com/downloads.html)
 3. Create GitHub [personal API token](https://github.com/blog/1509-personal-api-tokens)
 3. Prepare project:
-   
+
    ```bash
    git clone https://github.com/yiisoft/yii2-app-advanced.git
    cd yii2-app-advanced/vagrant/config
    cp vagrant-local.example.yml vagrant-local.yml
    ```
-   
+
 4. Place your GitHub personal API token to `vagrant-local.yml`
 5. Change directory to project root:
 
@@ -37,11 +84,11 @@ This way is the easiest but long (~20 min).
    vagrant plugin install vagrant-hostmanager
    vagrant up
    ```
-   
+
 That's all. You just need to wait for completion! After that you can access project locally by URLs:
 * frontend: http://y2aa-frontend.dev
 * backend: http://y2aa-backend.dev
-   
+
 #### Manual for Windows users
 
 1. Install [VirtualBox](https://www.virtualbox.org/wiki/Downloads)
@@ -56,7 +103,7 @@ That's all. You just need to wait for completion! After that you can access proj
 
 6. Place your GitHub personal API token to `vagrant-local.yml`
 7. Add the following lines to [hosts file](https://en.wikipedia.org/wiki/Hosts_(file)):
-   
+
    ```
    192.168.83.137 y2aa-frontend.dev
    192.168.83.137 y2aa-backend.dev
@@ -68,8 +115,8 @@ That's all. You just need to wait for completion! After that you can access proj
    vagrant plugin install vagrant-hostmanager
    vagrant up
    ```
-   
-   (You can read [here](http://www.wikihow.com/Change-Directories-in-Command-Prompt) how to change directories in command prompt) 
+
+   (You can read [here](http://www.wikihow.com/Change-Directories-in-Command-Prompt) how to change directories in command prompt)
 
 That's all. You just need to wait for completion! After that you can access project locally by URLs:
 * frontend: http://y2aa-frontend.dev
@@ -130,7 +177,7 @@ the installed application. You only need to do these once for all.
        <VirtualHost *:80>
            ServerName frontend.dev
            DocumentRoot "/path/to/yii-application/frontend/web/"
-           
+
            <Directory "/path/to/yii-application/frontend/web/">
                # use mod_rewrite for pretty URL support
                RewriteEngine on
@@ -146,11 +193,11 @@ the installed application. You only need to do these once for all.
                # ...other settings...
            </Directory>
        </VirtualHost>
-       
+
        <VirtualHost *:80>
            ServerName backend.dev
            DocumentRoot "/path/to/yii-application/backend/web/"
-           
+
            <Directory "/path/to/yii-application/backend/web/">
                # use mod_rewrite for pretty URL support
                RewriteEngine on
@@ -208,31 +255,31 @@ the installed application. You only need to do these once for all.
                #fastcgi_pass unix:/var/run/php5-fpm.sock;
                try_files $uri =404;
            }
-       
+
            location ~* /\. {
                deny all;
            }
        }
-        
+
        server {
            charset utf-8;
            client_max_body_size 128M;
-       
+
            listen 80; ## listen for ipv4
            #listen [::]:80 default_server ipv6only=on; ## listen for ipv6
-       
+
            server_name backend.dev;
            root        /path/to/yii-application/backend/web/;
            index       index.php;
-       
+
            access_log  /path/to/yii-application/log/backend-access.log;
            error_log   /path/to/yii-application/log/backend-error.log;
-       
+
            location / {
                # Redirect everything that isn't a real file to index.php
                try_files $uri $uri/ /index.php$is_args$args;
            }
-       
+
            # uncomment to avoid processing of calls to non-existing static files by Yii
            #location ~ \.(js|css|png|jpg|gif|swf|ico|pdf|mov|fla|zip|rar)$ {
            #    try_files $uri =404;
@@ -251,7 +298,7 @@ the installed application. You only need to do these once for all.
                #fastcgi_pass unix:/var/run/php5-fpm.sock;
                try_files $uri =404;
            }
-       
+
            location ~* /\. {
                deny all;
            }

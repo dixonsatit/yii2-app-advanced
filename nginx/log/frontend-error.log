@@ -1,0 +1,1 @@
+2016/07/14 12:33:17 [error] 5#0: *3 directory index of "/var/www/html/frontend/web/" is forbidden, client: 172.19.0.1, server: yii2-frontend.dev, request: "GET / HTTP/1.1", host: "localhost"

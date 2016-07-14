@@ -1,0 +1,68 @@
+version: '2'
+
+services:
+  db:
+    image: mysql
+    container_name: yii2-db
+    environment:
+      - MYSQL_ROOT_PASSWORD=123132123
+      - MYSQL_DATABASE=yii2advanced
+      - MYSQL_USER=yii2
+      - MYSQL_PASSWORD=123456
+    volumes:
+      - db-data:/var/log/mysql
+    networks:
+      - back-tier
+    restart: always
+
+  pmd:
+    image: phpmyadmin/phpmyadmin
+    container_name: yii2-phpmyadmin
+    ports:
+      - 8080:80
+    networks:
+      - back-tier
+    restart: always
+
+  memcached:
+    image: memcached
+    container_name: yii2-memcached
+    ports:
+      - "11211:11211"
+    networks:
+      - back-tier
+    restart: always
+
+  app:
+      build: ./
+      container_name: yii2-php7-fpm
+      expose:
+          - "9000"
+      volumes:
+          - ./:/var/www/html/
+      networks:
+        - back-tier
+      restart: always
+      environment:
+        ENABLE_ENV_FILE: 1
+        ENABLE_LOCALCONF: 1
+        API_TOKEN: ".......... Github API TOKEN ............"
+
+  nginx:
+      build: ./nginx
+      container_name: yii2-nginx
+      ports:
+          - "80:80"
+      volumes_from:
+          - app
+      networks:
+        - back-tier
+      restart: always
+
+volumes:
+  db-data:
+      driver: local
+
+networks:
+  back-tier:
+      driver: bridge
