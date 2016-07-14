@@ -24,6 +24,7 @@ The `yii2-base` image comes in three flavours:
    git clone https://github.com/dixonsatit/yii2-app-advanced.git
    cd yii2-app-advanced
    ```
+   
 4. Place your GitHub personal API token to `docker-compose.yml`
 5. Run commands start containers:
 
@@ -31,6 +32,7 @@ The `yii2-base` image comes in three flavours:
   docker-compose up -d
   docker-compose run --rm app  composer install
   ```
+
 6. Modify your hosts file
 
  - windews  ` c:\Windows\System32\Drivers\etc\hosts`
