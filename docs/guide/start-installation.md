@@ -66,11 +66,13 @@ created by `up`.
 docker-compose down
 ```
 
- - php7 fpm
- - mysql
- - nginx
- - memcached
- - phpmyadmin
+list all image
+
+ - [php7 fpm](https://hub.docker.com/r/codemix/yii2-base/)
+ - [mysql](https://hub.docker.com/_/mysql/)
+ - [nginx](https://hub.docker.com/_/nginx/)
+ - [memcached](https://hub.docker.com/_/memcached/)
+ - [phpmyadmin](https://hub.docker.com/r/phpmyadmin/phpmyadmin/)
 
 ## Installing using Vagrant
 
