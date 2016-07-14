@@ -52,6 +52,9 @@ Your application is accessible on
      * username `root`
      * password `123132123`
 
+nginx config `nginx/nginx.conf`
+nginx log `nginx/log`
+
 List containers.
 ```bash
 docker-compose ps
