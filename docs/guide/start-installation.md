@@ -25,12 +25,32 @@ The `yii2-base` image comes in three flavours:
   docker-compose up -d
   docker-compose run --rm app  composer install
   ```
-5.  your application is accessible on
- - frontend (http://yii2-frontend.dev)
- - backend (http://yii2-backend.dev)
- - phpmyadmin (http://yii2-frontend.dev:8080)
-  - username `root`
-  - password `123132123`
+5. Modify your hosts file
+
+ - windews  ` c:\Windows\System32\Drivers\etc\hosts`
+ - OS X or Linux `/etc/hosts`
+
+you add entries to the file `hosts`
+
+  ```bash
+## yii2-advance-docker
+127.0.0.1 yii2-frontend.dev
+127.0.0.1 yii2-backend.dev
+  ```
+
+if your use `Docker Toolbox` edit ip for vm
+  ```bash
+## yii2-advance-docker
+192.169.99.100 yii2-frontend.dev
+192.169.99.100 yii2-backend.dev
+  ```
+
+Your application is accessible on
+  - frontend (http://yii2-frontend.dev)
+  - backend (http://yii2-backend.dev)
+  - phpmyadmin (http://yii2-frontend.dev:8080)
+     * username `root`
+     * password `123132123`
 
 List containers.
 ```bash
