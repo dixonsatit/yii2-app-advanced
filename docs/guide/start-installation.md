@@ -30,6 +30,8 @@ The `yii2-base` image comes in three flavours:
  - windews  ` c:\Windows\System32\Drivers\etc\hosts`
  - OS X or Linux `/etc/hosts`
 
+  referent https://support.rackspace.com/how-to/modify-your-hosts-file/
+
 you add entries to the file `hosts`
 
   ```bash
